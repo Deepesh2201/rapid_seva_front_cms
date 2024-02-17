@@ -19,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 // });
 // Index Page
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('categories', [HomeController::class, 'categories'])->name('categories');
+Route::get('subcategories/{id}', [HomeController::class, 'subcategories'])->name('subcategories');
+Route::get('services/{id}', [HomeController::class, 'services'])->name('services');

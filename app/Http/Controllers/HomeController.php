@@ -17,4 +17,27 @@ class HomeController extends Controller
         
         return view('index',compact('backendurl','banners','categories','g_subcategory','g_subcategoryvid'));
     }
+
+    function categories(){
+        $backendurl = "https://backend.rapidseva.com/";
+        $categories = DB::table('category')->select('*')->where('cat_status',1)->get();
+        
+        
+        return view('categories',compact('categories','backendurl'));
+    }
+
+    function subcategories($id){
+        $backendurl = "https://backend.rapidseva.com/";
+        $g_subcategory = DB::table('g_subcategory')->select('*')->where('status',1)->where('cid','=',$id)->get();
+        
+        
+        return view('subcategories',compact('g_subcategory','backendurl'));
+    }
+    function services($id){
+        $backendurl = "https://backend.rapidseva.com/";
+        $services = DB::table('tbl_partner_service')->select('*')->where('status',1)->where('sid','=',$id)->get();
+        
+        
+        return view('services',compact('services','backendurl'));
+    }
 }
