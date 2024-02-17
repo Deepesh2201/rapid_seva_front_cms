@@ -6,38 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content>
     <meta name="author" content>
-    <link rel="icon" type="image/png" href="{{url('img/logo.svg')}}">
+    <link rel="icon" type="image/png" href="{{ url('img/logo.png') }}">
     <title>Rapid Seva - On Demand Service</title>
 
-    <link rel="stylesheet" type="text/css" href="{{url('vendor/slick/slick.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{url('vendor/slick/slick-theme.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url('vendor/slick/slick.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('vendor/slick/slick-theme.min.css') }}" />
 
-    <link href="{{url('vendor/icons/icofont.min.css')}}"rel="stylesheet" type="text/css">
+    <link href="{{ url('vendor/icons/icofont.min.css') }}"rel="stylesheet" type="text/css">
 
-    <link href="{{url('vendor/bootstrap/css/bootstrap.min.css')}}"rel="stylesheet">
+    <link href="{{ url('vendor/bootstrap/css/bootstrap.min.css') }}"rel="stylesheet">
 
-    <link href="{{url('css/style.css')}}"rel="stylesheet">
+    <link href="{{ url('css/style.css') }}"rel="stylesheet">
 
-    <link href="{{url('vendor/sidebar/demo.css')}}"rel="stylesheet">
+    <link href="{{ url('vendor/sidebar/demo.css') }}"rel="stylesheet">
 </head>
 
 <body class="fixed-bottom-padding">
     <div class="border-bottom p-3 d-none mobile-nav">
         <div class="title d-flex align-items-center">
-            <a href="{{url('/')}}"class="text-decoration-none text-dark d-flex align-items-center">
+            <a href="{{ url('/') }}"class="text-decoration-none text-dark d-flex align-items-center">
                 <img class="osahan-logo mr-2" src="https://backend.rapidseva.com/assets/img/logo%20(4).png">
-                
+
             </a>
             <p class="ml-auto m-0">
-                <a href="{{url('#')}}"
+                <a href="{{ url('#') }}"
                     class="text-decoration-none bg-white p-1 rounded shadow-sm d-flex align-items-center">
                     <i class="text-dark icofont-sale-discount"></i>
                     <span class="badge badge-danger p-1 ml-1 small">20%</span>
                 </a>
             </p>
-            <a class="toggle ml-3" href="{{url('#')}}"><i class="icofont-navigation-menu"></i></a>
+            <a class="toggle ml-3" href="{{ url('#') }}"><i class="icofont-navigation-menu"></i></a>
         </div>
-        <a href="{{url('search.html')}}" class="text-decoration-none">
+        <a href="{{ url('search.html') }}" class="text-decoration-none">
             <div class="input-group mt-3 rounded shadow-sm overflow-hidden bg-white">
                 <div class="input-group-prepend">
                     <button class="border-0 btn btn-outline-secondary text-success bg-white"><i
@@ -61,7 +61,8 @@
 
     <div class="bg-white shadow-sm osahan-main-nav">
         <nav class="navbar navbar-expand-lg navbar-light bg-white osahan-header py-0 container">
-            <a class="navbar-brand mr-0" href="{{url('/')}}"><img class="img-fluid logo-img rounded-pill border shadow-sm"
+            <a class="navbar-brand mr-0" href="{{ url('/') }}"><img
+                    class="img-fluid logo-img rounded-pill border shadow-sm"
                     src="https://backend.rapidseva.com/assets/img/logo%20(4).png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,7 +96,8 @@
                         </form>
                         <div class="city pt-2">
                             <h6>Top Citis</h6>
-                            <p class="border-bottom m-0 py-1"><a href="{{url('#')}}" class="text-dark">Patna Bihar</a></p>
+                            <p class="border-bottom m-0 py-1"><a href="{{ url('#') }}" class="text-dark">Patna
+                                    Bihar</a></p>
                         </div>
                     </div>
                 </div>
@@ -110,11 +112,44 @@
             </div>
             <div class="ml-auto d-flex align-items-center">
 
-                <a href="{{url('#')}}" data-toggle="modal" data-target="#login"
+                
+
+                <div class="dropdown mr-3">
+                    <a href="#" class="dropdown-toggle text-dark" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{-- <img src="img/user.png" class="img-fluid rounded-circle header-user mr-2" /> --}}
+                        @if (session('user'))
+                            Hi {{ session('user')->name }}
+                        @else
+                            Hi guest
+                        @endif
+
+                    </a>
+                    @if (session('user'))
+                    <div class="dropdown-menu dropdown-menu-right top-profile-drop"
+                        aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{url('myaccount')}}">My account</a>
+                        {{-- <a class="dropdown-item" href="promos.html">Promos</a> --}}
+                        <a class="dropdown-item" href="{{url('myaddress')}}">My address</a>
+                        {{-- <a class="dropdown-item" href="terms_conditions.html">Terms & conditions</a> --}}
+                        <a class="dropdown-item" href="{{url('helpsupport')}}">Help & support</a>
+                        <a class="dropdown-item" href="{{url('logout')}}">Logout</a>
+                    </div>
+                
+                    @else
+                    
+                    <div class="dropdown-menu dropdown-menu-right top-profile-drop"
+                    aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{url('login')}}">Login</a>
+                    <a class="dropdown-item" href="{{url('signup')}}">Register</a>
+                </div>
+            
+                    @endif
+                </div>
+                {{-- <a href="{{ url('#') }}" data-toggle="modal" data-target="#login"
                     class="mr-2 text-dark bg-light rounded-pill p-2 icofont-size border shadow-sm">
                     <i class="icofont-login"></i>
-                </a>
-
+                </a> --}}
                 {{-- <div class="dropdown">
                     <a href="{{url('#" class="text-dark dropdown-toggle not-drop" id="dropdownMenuNotification"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -151,71 +186,74 @@
             <div class="container menu-bar d-flex align-items-center">
                 <ul class="list-unstyled form-inline mb-0">
                     <li class="nav-item active">
-                        <a class="nav-link text-white pl-0" href="{{url('/')}}">Home <span
+                        <a class="nav-link text-white pl-0" href="{{ url('/') }}">Home <span
                                 class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link text-white pl-0" href="{{url('/categories')}}">Categories</a>
+                        <a class="nav-link text-white pl-0" href="{{ url('/categories') }}">Categories</a>
                     </li>
-                    
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{url('listing.html')}}">Listing</a>
-                            <a class="dropdown-item" href="{{url('product_details.html')}}">Detail</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{url('picks_today.html')}}">Trending</a>
-                            <a class="dropdown-item" href="{{url('recommend.html')}}">Recommended</a>
-                            <a class="dropdown-item" href="{{url('fresh_vegan.html')}}">Most Popular</a>
-                        </div>
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ url('listing.html') }}">Listing</a>
+                        <a class="dropdown-item" href="{{ url('product_details.html') }}">Detail</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ url('picks_today.html') }}">Trending</a>
+                        <a class="dropdown-item" href="{{ url('recommend.html') }}">Recommended</a>
+                        <a class="dropdown-item" href="{{ url('fresh_vegan.html') }}">Most Popular</a>
+                    </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link text-white dropdown-toggle" href="{{url('#')}}" id="navbarDropdown"
-                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link text-white dropdown-toggle" href="{{ url('#') }}"
+                            id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             Checkout Process
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{url('cart.html')}}">Cart</a>
-                            <a class="dropdown-item" href="{{url('checkout.html')}}">Checkout</a>
-                            <a class="dropdown-item" href="{{url('successful.html')}}">Successful</a>
+                            <a class="dropdown-item" href="{{ url('cart.html') }}">Cart</a>
+                            <a class="dropdown-item" href="{{ url('checkout.html') }}">Checkout</a>
+                            <a class="dropdown-item" href="{{ url('successful.html') }}">Successful</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link text-white dropdown-toggle" href="{{url('#')}}" id="navbarDropdown"
-                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link text-white dropdown-toggle" href="{{ url('#') }}"
+                            id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             My Order
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{url('my_order.html')}}">My order</a>
-                            <a class="dropdown-item" href="{{url('status_complete.html')}}">Status Complete</a>
-                            <a class="dropdown-item" href="{{url('status_onprocess.html')}}">Status on Process</a>
-                            <a class="dropdown-item" href="{{url('status_canceled.html')}}">Status Canceled</a>
-                            <a class="dropdown-item" href="{{url('review.html')}}">Review</a>
+                            <a class="dropdown-item" href="{{ url('my_order.html') }}">My order</a>
+                            <a class="dropdown-item" href="{{ url('status_complete.html') }}">Status Complete</a>
+                            <a class="dropdown-item" href="{{ url('status_onprocess.html') }}">Status on Process</a>
+                            <a class="dropdown-item" href="{{ url('status_canceled.html') }}">Status Canceled</a>
+                            <a class="dropdown-item" href="{{ url('review.html') }}">Review</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link text-white dropdown-toggle" href="{{url('#')}}" id="navbarDropdown"
-                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link text-white dropdown-toggle" href="{{ url('#') }}"
+                            id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             Extra Pages
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{url('verification.html')}}">Verification</a>
-                            <a class="dropdown-item" href="{{url('promos.html')}}">Promos</a>
-                            <a class="dropdown-item" href="{{url('promo_details.html')}}">Promo Details</a>
-                            <a class="dropdown-item" href="{{url('terms_conditions.html')}}">Terms & Conditions</a>
-                            <a class="dropdown-item" href="{{url('privacy.html')}}">Privacy</a>
-                            <a class="dropdown-item" href="{{url('terms%26conditions.html')}}">Conditions</a>
-                            <a class="dropdown-item" href="{{url('help_support.html')}}">Help Support</a>
-                            <a class="dropdown-item" href="{{url('help_ticket.html')}}">Help Ticket</a>
-                            <a class="dropdown-item" href="{{url('refund_payment.html')}}">Refund Payment</a>
-                            <a class="dropdown-item" href="{{url('faq.html')}}">FAQ</a>
-                            <a class="dropdown-item" href="{{url('signin.html')}}">Sign In</a>
-                            <a class="dropdown-item" href="{{url('signup.html')}}">Sign Up</a>
-                            <a class="dropdown-item" href="{{url('search.html')}}">Search</a>
+                            <a class="dropdown-item" href="{{ url('verification.html') }}">Verification</a>
+                            <a class="dropdown-item" href="{{ url('promos.html') }}">Promos</a>
+                            <a class="dropdown-item" href="{{ url('promo_details.html') }}">Promo Details</a>
+                            <a class="dropdown-item" href="{{ url('terms_conditions.html') }}">Terms & Conditions</a>
+                            <a class="dropdown-item" href="{{ url('privacy.html') }}">Privacy</a>
+                            <a class="dropdown-item" href="{{ url('terms%26conditions.html') }}">Conditions</a>
+                            <a class="dropdown-item" href="{{ url('help_support.html') }}">Help Support</a>
+                            <a class="dropdown-item" href="{{ url('help_ticket.html') }}">Help Ticket</a>
+                            <a class="dropdown-item" href="{{ url('refund_payment.html') }}">Refund Payment</a>
+                            <a class="dropdown-item" href="{{ url('faq.html') }}">FAQ</a>
+                            <a class="dropdown-item" href="{{ url('signin.html') }}">Sign In</a>
+                            <a class="dropdown-item" href="{{ url('signup.html') }}">Sign Up</a>
+                            <a class="dropdown-item" href="{{ url('search.html') }}">Search</a>
                         </div>
                     </li>
                 </ul>
                 <div class="list-unstyled form-inline mb-0 ml-auto">
-                    <a href="{{url('picks_today.html')}}" class="text-white px-3 py-2">Trending</a>
-                    <a href="{{url('promos.html')}}" class="text-white bg-offer px-3 py-2"><i
+                    <a href="{{ url('picks_today.html') }}" class="text-white px-3 py-2">Trending</a>
+                    <a href="{{ url('promos.html') }}" class="text-white bg-offer px-3 py-2"><i
                             class="icofont-sale-discount h6"></i>Promos</a>
                 </div>
             </div>
@@ -225,7 +263,7 @@
     <nav aria-label="breadcrumb" class="breadcrumb mb-0 d-none">
         <div class="container">
             <ol class="d-flex align-items-center mb-0 p-0">
-                <li class="breadcrumb-item"><a href="{{url('#')}}" class="text-success">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('#') }}" class="text-success">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page"></li>
             </ol>
         </div>

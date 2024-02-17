@@ -292,36 +292,53 @@
                                 <div class="p-2">
                                     <h2 class="my-0">Let's get started</h2>
                                     <p class="small mb-4">Create account to see our top picks for you!</p>
-                                    <form action="https://askbootstrap.com/preview/grofarweb/verification.html">
+                                    <form action="{{ route('register') }}" method="post">
+                                        @csrf
                                         <div class="form-group">
                                             <label for="exampleInputName1">Name</label>
-                                            <input placeholder="Enter Name" type="text" class="form-control"
-                                                id="exampleInputName1" aria-describedby="emailHelp">
+                                            <input placeholder="Enter Full Name" type="text" class="form-control @error('fullname') is-invalid @enderror"
+                                                id="fullname" name="fullname" aria-describedby="emailHelp">
+                                            @error('fullname')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputNumber1">Phone Number</label>
                                             <input placeholder="Enter Phone Number" type="number"
-                                                class="form-control" id="exampleInputNumber1"
+                                                class="form-control @error('mobile') is-invalid @enderror" id="mobile" name="mobile"
                                                 aria-describedby="emailHelp">
+                                            @error('mobile')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Email</label>
-                                            <input placeholder="Enter Email" type="email" class="form-control"
-                                                id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input placeholder="Enter Email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                                id="email" name="email" aria-describedby="emailHelp">
+                                            @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Password</label>
-                                            <input placeholder="Enter Password" type="password" class="form-control"
-                                                id="exampleInputPassword1">
+                                            <input placeholder="Enter Password" type="password" class="form-control @error('password') is-invalid @enderror"
+                                                id="password" name="password">
+                                            @error('password')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword2">Confirmation Password</label>
                                             <input placeholder="Enter Confirmation Password" type="password"
-                                                class="form-control" id="exampleInputPassword2">
+                                                class="form-control @error('password_confirmation') is-invalid @enderror" id="confirmpassword" name="password_confirmation">
+                                            @error('password_confirmation')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <button type="submit" class="btn btn-success rounded btn-lg btn-block">Create
                                             Account</button>
                                     </form>
+                                    
                                     <p class="text-muted text-center small py-2 m-0">or</p>
                                     <a href="verification.html"
                                         class="btn btn-dark btn-block rounded btn-lg btn-apple">
@@ -471,6 +488,7 @@
         </div>
     </div>
 </div>
+
 <script src="vendor/jquery/jquery.min.js" type="ffb9166e87b0cbd838d29fa0-text/javascript"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" type="ffb9166e87b0cbd838d29fa0-text/javascript"></script>
 

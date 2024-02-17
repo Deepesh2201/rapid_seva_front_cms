@@ -28,6 +28,11 @@ class Kernel extends HttpKernel
      *
      * @var array<string, array<int, class-string|string>>
      */
+    protected $routeMiddleware = [
+        // Other middleware entries...
+    
+        'check.user' => \App\Http\Middleware\CheckUserMiddleware::class,
+    ];
     protected $middlewareGroups = [
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,

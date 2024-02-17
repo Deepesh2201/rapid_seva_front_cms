@@ -22,7 +22,7 @@
                                     <div
                                         class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                                         <div class="list-card-image">
-                                            <a href="services/{{ $service->id }}" class="text-dark">
+                                            <a href="{{url('servicesdetails')}}/{{ $service->id }}" class="text-dark">
                                                 <div
                                                     class="member-plan position-absolute"
                                                 >
