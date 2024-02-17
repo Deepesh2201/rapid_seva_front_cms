@@ -36,6 +36,7 @@ Route::middleware('check.user')->group(function () {
     Route::get('myaccount', [BookingController::class, 'myaccount'])->name('myaccount');
     Route::get('myaddress', [BookingController::class, 'myaddress'])->name('myaddress');
     Route::get('servicesdetails/{id}', [BookingController::class, 'servicesdetails'])->name('servicesdetails');
+    Route::get('addtocart/{id}', [BookingController::class, 'addtocart'])->name('addtocart');
     // Route::get('helpsupport', [BookingController::class, 'helpsupport'])->name('helpsupport');
     Route::get('promos', [BookingController::class, 'promos'])->name('promos');
     // Route::get('tickets', [BookingController::class, 'tickets'])->name('tickets');
