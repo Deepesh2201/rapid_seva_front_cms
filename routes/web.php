@@ -36,9 +36,14 @@ Route::middleware('check.user')->group(function () {
     Route::get('myaccount', [BookingController::class, 'myaccount'])->name('myaccount');
     Route::get('myaddress', [BookingController::class, 'myaddress'])->name('myaddress');
     Route::get('servicesdetails/{id}', [BookingController::class, 'servicesdetails'])->name('servicesdetails');
-    Route::get('addtocart/{id}', [BookingController::class, 'addtocart'])->name('addtocart');
-    // Route::get('helpsupport', [BookingController::class, 'helpsupport'])->name('helpsupport');
+    Route::get('addtocart/{service_id}', [BookingController::class, 'addtocart'])->name('addtocart');
+    Route::get('removecart/{service_id}', [BookingController::class, 'removecart'])->name('removecart');
+    Route::get('buynow/{service_id}', [BookingController::class, 'buynow'])->name('buynow');
     Route::get('promos', [BookingController::class, 'promos'])->name('promos');
+    Route::get('cart', [BookingController::class, 'cart'])->name('cart');
+    Route::post('applycoupon', [BookingController::class, 'applycoupon'])->name('applycoupon');
+
+    // Route::get('helpsupport', [BookingController::class, 'helpsupport'])->name('helpsupport');
     // Route::get('tickets', [BookingController::class, 'tickets'])->name('tickets');
     // Route::get('myorders', [BookingController::class, 'myorders'])->name('myorders');
     // Route::get('finalbooking', [BookingController::class, 'finalbooking'])->name('finalbooking');

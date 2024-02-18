@@ -7,7 +7,7 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -84,56 +84,64 @@ class HomeController extends Controller
     }
     function register(Request $request)
     {
-        if(!session('user')->id){
-        // Validation rules
-        $rules = [
-            'fullname' => 'required|string',
-            'email' => 'required|email|unique:tbl_user,email',
-            'mobile' => 'required|numeric|unique:tbl_user,mobile',
-            'password' => 'required|string|min:8|confirmed',
-        ];
-
-        // Validation messages
-        $messages = [
-            'password.confirmed' => 'The password confirmation does not match.'
-        ];
-
-        // Validate the request
-        $request->validate($rules, $messages);
-
-        // If validation passes, insert the user into the database
-        DB::table('tbl_user')->insert([
-            'name' => $request->fullname,
-            'email' => $request->email,
-            'mobile' => $request->mobile,
-            'password' => $request->password,
-            'ccode' => '+91',
-            'code' => 123456,
-            'rdate' => Carbon::now()
-        ]);
-
-        // You can return a success response or redirect wherever you need
-        return response()->json(['message' => 'User registered successfully'], 200);
+        // Check if user session exists
+        if (Session::has('user')) {
+            // If user session exists, update user name
+            $rules = [
+                'fullname' => 'required|string',
+            ];
+    
+            // Validation messages
+            $messages = [
+                'fullname.required' => 'Enter valid name.',
+            ];
+    
+            // Validate the request
+            $request->validate($rules, $messages);
+    
+            // Update user name in the database
+            DB::table('tbl_user')->where('id', session('user')->id)->update(['name' => $request->fullname]);
+    
+            // Store a success message in the session
+            $request->session()->flash('status', 'User updated successfully. Re-login to see the changes.');
+    
+            // Redirect back to the previous page
+            return redirect()->back();
+        } else {
+            // If user session doesn't exist, proceed with user registration
+    
+            // Validation rules
+            $rules = [
+                'fullname' => 'required|string',
+                'email' => 'required|email|unique:tbl_user,email',
+                'mobile' => 'required|numeric|unique:tbl_user,mobile',
+                'password' => 'required|string|min:8|confirmed',
+            ];
+    
+            // Validation messages
+            $messages = [
+                'password.confirmed' => 'The password confirmation does not match.'
+            ];
+    
+            // Validate the request
+            $request->validate($rules, $messages);
+    
+            // If validation passes, insert the user into the database
+            DB::table('tbl_user')->insert([
+                'name' => $request->fullname,
+                'email' => $request->email,
+                'mobile' => $request->mobile,
+                'password' => $request->password,
+                'ccode' => '+91',
+                'code' => 123456,
+                'rdate' => Carbon::now()
+            ]);
+    
+            // Return a success response
+            return response()->json(['message' => 'User registered successfully'], 200);
+        }
     }
-    else{
-        $rules = [
-            'fullname' => 'required|string',
-        ];
-        // Validation messages
-        $messages = [
-            'fullname' => 'Enter valid name.'
-        ];
-        // Validate the request
-        $request->validate($rules, $messages);
-        DB::table('tbl_user')->where('id', session('user')->id)->update(['name' => $request->fullname]);
-// Store a success message in the session
-$request->session()->flash('status', 'User updated successfully. Re-login to see the changes.');
-
-// Redirect back to the previous page
-return redirect()->back();
-
-    }
-    }
+    
     public function logout(Request $request)
     {
         Auth::logout();

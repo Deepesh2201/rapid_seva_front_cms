@@ -19,6 +19,34 @@
     <link href="{{ url('css/style.css') }}"rel="stylesheet">
 
     <link href="{{ url('vendor/sidebar/demo.css') }}"rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".qtyplus").click(function(e) {
+                e.preventDefault();
+                var fieldName = $(this).attr("field");
+                var currentVal = parseInt($("input[name=" + fieldName + "]").val());
+                if (!isNaN(currentVal)) {
+                    $("input[name=" + fieldName + "]").val(currentVal + 1);
+                } else {
+                    $("input[name=" + fieldName + "]").val(1);
+                }
+            });
+    
+            $(".qtyminus").click(function(e) {
+                e.preventDefault();
+                var fieldName = $(this).attr("field");
+                var currentVal = parseInt($("input[name=" + fieldName + "]").val());
+                if (!isNaN(currentVal) && currentVal > 1) {
+                    $("input[name=" + fieldName + "]").val(currentVal - 1);
+                } else {
+                    $("input[name=" + fieldName + "]").val(1);
+                }
+            });
+        });
+    </script>
+    
+
 </head>
 
 <body class="fixed-bottom-padding">
@@ -146,12 +174,13 @@
             
                     @endif
                 </div>
+                
                 {{-- <a href="{{ url('#') }}" data-toggle="modal" data-target="#login"
                     class="mr-2 text-dark bg-light rounded-pill p-2 icofont-size border shadow-sm">
                     <i class="icofont-login"></i>
                 </a> --}}
                 {{-- <div class="dropdown">
-                    <a href="{{url('#" class="text-dark dropdown-toggle not-drop" id="dropdownMenuNotification"
+                    <a href="{{url('#')}}" class="text-dark dropdown-toggle not-drop" id="dropdownMenuNotification"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i
                             class="icofont-notification d-flex align-items-center bg-light rounded-pill p-2 icofont-size border shadow-sm">
@@ -164,7 +193,7 @@
                         <div class="osahan-notifications bg-white border-bottom p-2">
                             <div class="position-absolute ml-n1 py-2"><i
                                     class="icofont-check-circled text-white bg-success rounded-pill p-1"></i></div>
-                            <a href="{{url('status_complete.html" class="text-decoration-none text-dark">
+                            <a href="{{url('status_complete.html')}}" class="text-decoration-none text-dark">
                                 <div class="notifiction small">
                                     <div class="ml-3">
                                         <p class="font-weight-bold mb-1">Yay! Order Complete</p>
@@ -174,12 +203,16 @@
                             </a>
                         </div>
 
-                </div>
+                </div> --}}
 
-                <a href="{{url('cart.html" class="ml-2 text-dark bg-light rounded-pill p-2 icofont-size border shadow-sm">
+                <a href="{{url('cart')}}" class="ml-2 text-dark bg-light rounded-pill p-2 icofont-size border shadow-sm position-relative">
                     <i class="icofont-shopping-cart"></i>
+                    @if(session('cart'))
+                        <span class="badge badge-dark rounded-circle position-absolute" style="top: -8px; right: -8px;">{{ count(session('cart')) }}</span>
+                    @endif
                 </a>
-            </div> --}}
+                
+            </div>
         </nav>
 
         <div class="bg-color-head">
