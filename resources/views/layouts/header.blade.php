@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content>
     <meta name="author" content>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" href="{{ url('img/logo.png') }}">
     <title>Rapid Seva - On Demand Service</title>
 
@@ -76,7 +77,7 @@
             </div>
         </a>
     </div>
-
+{{-- 
     <div class="theme-switch-wrapper">
         <label class="theme-switch" for="checkbox">
             <input type="checkbox" id="checkbox" />
@@ -84,7 +85,7 @@
             <i class="icofont-moon"></i>
         </label>
         <em>Enable Dark Mode!</em>
-    </div>
+    </div> --}}
 
 
     <div class="bg-white shadow-sm osahan-main-nav">
@@ -123,7 +124,7 @@
                             </div>
                         </form>
                         <div class="city pt-2">
-                            <h6>Top Citis</h6>
+                            <h6>Top Cities</h6>
                             <p class="border-bottom m-0 py-1"><a href="{{ url('#') }}" class="text-dark">Patna
                                     Bihar</a></p>
                         </div>
@@ -225,68 +226,21 @@
                     <li class="nav-item active">
                         <a class="nav-link text-white pl-0" href="{{ url('/categories') }}">Categories</a>
                     </li>
-
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url('listing.html') }}">Listing</a>
-                        <a class="dropdown-item" href="{{ url('product_details.html') }}">Detail</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ url('picks_today.html') }}">Trending</a>
-                        <a class="dropdown-item" href="{{ url('recommend.html') }}">Recommended</a>
-                        <a class="dropdown-item" href="{{ url('fresh_vegan.html') }}">Most Popular</a>
-                    </div>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white pl-0" href="{{ url('helpsupport') }}">Help & Support</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-white dropdown-toggle" href="{{ url('#') }}"
-                            id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            Checkout Process
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('cart.html') }}">Cart</a>
-                            <a class="dropdown-item" href="{{ url('checkout.html') }}">Checkout</a>
-                            <a class="dropdown-item" href="{{ url('successful.html') }}">Successful</a>
-                        </div>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white pl-0" href="#">Customer App</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-white dropdown-toggle" href="{{ url('#') }}"
-                            id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            My Order
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('my_order.html') }}">My order</a>
-                            <a class="dropdown-item" href="{{ url('status_complete.html') }}">Status Complete</a>
-                            <a class="dropdown-item" href="{{ url('status_onprocess.html') }}">Status on Process</a>
-                            <a class="dropdown-item" href="{{ url('status_canceled.html') }}">Status Canceled</a>
-                            <a class="dropdown-item" href="{{ url('review.html') }}">Review</a>
-                        </div>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white pl-0" href="#">Partner App</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-white dropdown-toggle" href="{{ url('#') }}"
-                            id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            Extra Pages
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('verification.html') }}">Verification</a>
-                            <a class="dropdown-item" href="{{ url('promos.html') }}">Promos</a>
-                            <a class="dropdown-item" href="{{ url('promo_details.html') }}">Promo Details</a>
-                            <a class="dropdown-item" href="{{ url('terms_conditions.html') }}">Terms & Conditions</a>
-                            <a class="dropdown-item" href="{{ url('privacy.html') }}">Privacy</a>
-                            <a class="dropdown-item" href="{{ url('terms%26conditions.html') }}">Conditions</a>
-                            <a class="dropdown-item" href="{{ url('help_support.html') }}">Help Support</a>
-                            <a class="dropdown-item" href="{{ url('help_ticket.html') }}">Help Ticket</a>
-                            <a class="dropdown-item" href="{{ url('refund_payment.html') }}">Refund Payment</a>
-                            <a class="dropdown-item" href="{{ url('faq.html') }}">FAQ</a>
-                            <a class="dropdown-item" href="{{ url('signin.html') }}">Sign In</a>
-                            <a class="dropdown-item" href="{{ url('signup.html') }}">Sign Up</a>
-                            <a class="dropdown-item" href="{{ url('search.html') }}">Search</a>
-                        </div>
-                    </li>
+                    
+                  
                 </ul>
                 <div class="list-unstyled form-inline mb-0 ml-auto">
-                    <a href="{{ url('picks_today.html') }}" class="text-white px-3 py-2">Trending</a>
-                    <a href="{{ url('promos.html') }}" class="text-white bg-offer px-3 py-2"><i
+                    <a href="#" class="text-white px-3 py-2">Trending</a>
+                    <a href="#" class="text-white bg-offer px-3 py-2"><i
                             class="icofont-sale-discount h6"></i>Promos</a>
                 </div>
             </div>

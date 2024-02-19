@@ -83,7 +83,7 @@ class BookingController extends Controller
     {
         // Get current cart items from session
         $cart = Session::get('cart', []);
-    
+
         // Check if the service to be removed exists in the cart
         $index = null;
         foreach ($cart as $key => $item) {
@@ -92,18 +92,18 @@ class BookingController extends Controller
                 break;
             }
         }
-    
+
         // If the service is found, remove it from the cart
         if (!is_null($index)) {
             unset($cart[$index]);
             Session::put('cart', $cart);
             return redirect()->back()->with('success', 'Service removed from cart successfully');
         }
-    
+
         // If the service is not found in the cart
         return redirect()->back()->with('error', 'Service not found in the cart');
     }
-    
+
 
     public function buynow($service_id)
     {
@@ -143,39 +143,105 @@ class BookingController extends Controller
         // Update the cart session
         Session::put('cart', $cart);
         $backendurl = "https://backend.rapidseva.com/";
+        $addresses = DB::table('tbl_address')->select('*')->where('uid', session('user')->id)->get();
         // Redirect back to the previous page or wherever you need
         $coupondiscount = 0;
-        return view('cart', compact('backendurl','coupondiscount'));
-        
-    }
-    public function cart(){
+        $slots = DB::table('time_date')->where('dstatus', 1)->first();
 
+        // Parse the time slots string into an array
+        $timeSlots = explode(',', $slots->tslot);
+
+        // Calculate the delivery dates for the next 7 days
+        $days = [];
+        for ($i = 0; $i < 7; $i++) {
+            $days[] = date('l', strtotime("+$i days"));
+        }
+
+        return view('cart', compact('backendurl', 'coupondiscount', 'addresses', 'timeSlots', 'days'));
+    }
+    public function cart()
+    {
         $backendurl = "https://backend.rapidseva.com/";
         $addresses = DB::table('tbl_address')->select('*')->where('uid', session('user')->id)->get();
         $coupondiscount = 0;
-        return view('cart', compact('backendurl','coupondiscount','addresses'));
+        $slots = DB::table('time_date')->where('dstatus', 1)->first();
+
+        // Parse the time slots string into an array
+        $timeSlots = explode(',', $slots->tslot);
+
+        // Calculate the delivery dates for the next 7 days
+        $days = [];
+        for ($i = 0; $i < 7; $i++) {
+            $days[] = date('l', strtotime("+$i days"));
+        }
+
+        return view('cart', compact('backendurl', 'coupondiscount', 'addresses', 'timeSlots', 'days'));
     }
+
     public function applycoupon(Request $request)
-{
-    $couponCode = $request->input('coupon');
+    {
+        $couponCode = $request->input('coupon');
 
-    // Query the database to check if the coupon code exists and is valid
-    $coupon = DB::table('tbl_coupon')->where('coupon_code', $couponCode)->where('coupon_status', 1)->first();
+        // Query the database to check if the coupon code exists and is valid
+        $coupon = DB::table('tbl_coupon')->where('coupon_code', $couponCode)->where('coupon_status', 1)->first();
 
-    if ($coupon) {
-        // Coupon is valid, retrieve the discount amount
-        $coupondiscount = $coupon->disc_per;
-        $couponcode = $coupon->coupon_code;
-        $maxdiscount = $coupon->max_disc;
-        // Pass the discount amount to the view
-        $backendurl = "https://backend.rapidseva.com/";
-        $couponsuccess = $coupondiscount.'% discount upto ₹'.$maxdiscount;
-        // Redirect back to the previous page or wherever you need
-        return view('cart', compact('backendurl','coupondiscount','couponcode','maxdiscount','couponsuccess'));
-    } else {
-        // Coupon is not valid
-        return redirect()->back()->with('couponerror', 'Invalid coupon code');
+        if ($coupon) {
+            // Coupon is valid, retrieve the discount amount
+            $coupondiscount = $coupon->disc_per;
+            $couponcode = $coupon->coupon_code;
+            $maxdiscount = $coupon->max_disc;
+            // Pass the discount amount to the view
+            $backendurl = "https://backend.rapidseva.com/";
+            $couponsuccess = $coupondiscount . '% discount upto ₹' . $maxdiscount;
+            // Redirect back to the previous page or wherever you need
+            return view('cart', compact('backendurl', 'coupondiscount', 'couponcode', 'maxdiscount', 'couponsuccess'));
+        } else {
+            // Coupon is not valid
+            return redirect()->back()->with('couponerror', 'Invalid coupon code');
+        }
     }
+    public function placeorder(Request $request)
+{
+    // Validate the incoming request data
+    $request->validate([
+        'addressId'=>'required',
+        'paymentMethod'=>'required',
+        'productId'=>'required',
+        'selectedDate'=>'required',
+        'selectedTime'=>'required',
+        'toPay'=>'required',
+        'totalPrice'=>'required'
+    ]);
+    $address = DB::table('tbl_address')->where('id',$request->addressId)->first();
+    // Assuming your tbl_order table has fields like 'payment_method', 'user_id', 'created_at', etc.
+    // You can adjust this as per your actual table structure
+    $orderId = DB::table('tbl_order')->insertGetId([
+        'p_method_id' => $request->paymentMethod, // Assuming 'paymentMethod' is the field name
+        'uid' => session('user')->id, // Assuming you're storing the user ID who placed the order
+        'cid' => 11,
+        'odate'=>Carbon::now(),
+        'address'=>$address->address,
+        'o_total'=>$request->totalPrice,
+        'subtotal'=>$request->toPay,
+        'time'=>$request->selectedTime,
+        'date'=>$request->selectedDate,
+        'lats'=>'25.592150512244',
+        'longs'=>'85.13968270272',
+        'htype'=>'Random',
+        'coupon_id'=>0,
+        'coupon_amt'=>0
+    ]);
 
+    if ($orderId) {
+        // Clear session cart data
+    session()->forget('cart');
+        return response()->json(['message' => 'Order inserted successfully'], 200);
+    } else {
+        return response()->json(['message' => 'Order insertion failed'], 500);
+    }
+    
+}
+public function successful(){
+        return view('successful');
 }
 }

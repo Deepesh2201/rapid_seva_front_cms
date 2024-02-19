@@ -42,6 +42,8 @@ Route::middleware('check.user')->group(function () {
     Route::get('promos', [BookingController::class, 'promos'])->name('promos');
     Route::get('cart', [BookingController::class, 'cart'])->name('cart');
     Route::post('applycoupon', [BookingController::class, 'applycoupon'])->name('applycoupon');
+    Route::post('placeorder', [BookingController::class, 'placeorder'])->name('placeorder');
+    Route::get('successful', [BookingController::class, 'successful'])->name('successful');
 
     // Route::get('helpsupport', [BookingController::class, 'helpsupport'])->name('helpsupport');
     // Route::get('tickets', [BookingController::class, 'tickets'])->name('tickets');

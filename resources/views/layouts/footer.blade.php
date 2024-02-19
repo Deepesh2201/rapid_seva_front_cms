@@ -1,115 +1,46 @@
 <nav id="main-nav">
+    
     <ul class="second-nav">
-        <li><a href="home.html"><i class="icofont-smart-phone mr-2"></i> Home</a></li>
-        <li>
-            <a href="#"><i class="icofont-login mr-2"></i> Authentication</a>
-            <ul>
-                <li><a class="dropdown-item" href="signin.html">Sign In</a></li>
-                <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
-                <li><a href="verification.html">Verification</a></li>
-            </ul>
-        </li>
-        <li><a class="dropdown-item" href="listing.html">Listing</a></li>
-        <li><a class="dropdown-item" href="product_details.html">Detail</a></li>
-        <li><a class="dropdown-item" href="picks_today.html">Trending</a></li>
-        <li><a class="dropdown-item" href="recommend.html">Recommended</a></li>
-        <li><a class="dropdown-item" href="fresh_vegan.html">Most Popular</a></li>
-        <li><a class="dropdown-item" href="cart.html">Cart</a></li>
-        <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
-        <li><a class="dropdown-item" href="successful.html">Successful</a></li>
-        <li>
-            <a href="#"><i class="icofont-sub-listing mr-2"></i> My Order</a>
-            <ul>
-                <li><a class="dropdown-item" href="my_order.html">My order</a></li>
-                <li><a class="dropdown-item" href="status_complete.html">Status Complete</a></li>
-                <li><a class="dropdown-item" href="status_onprocess.html">Status on Process</a></li>
-                <li><a class="dropdown-item" href="status_canceled.html">Status Canceled</a></li>
-                <li><a class="dropdown-item" href="review.html">Review</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#"><i class="icofont-ui-user mr-2"></i> My Account</a>
-            <ul>
-                <li><a class="dropdown-item" href="my_account.html">My account</a></li>
-                <li><a class="dropdown-item" href="promos.html">Promos</a></li>
-                <li><a class="dropdown-item" href="my_address.html">My address</a></li>
-                <li><a class="dropdown-item" href="terms_conditions.html">Terms & conditions</a></li>
-                <li><a class="dropdown-item" href="help_support.html">Help & support</a></li>
-                <li><a class="dropdown-item" href="help_ticket.html">Help ticket</a></li>
-                <li><a class="dropdown-item" href="signin.html">Logout</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#"><i class="icofont-page mr-2"></i> Pages</a>
-            <ul>
-                <li><a class="dropdown-item" href="verification.html">Verification</a></li>
-                <li><a class="dropdown-item" href="promos.html">Promos</a></li>
-                <li><a class="dropdown-item" href="promo_details.html">Promo Details</a></li>
-                <li><a class="dropdown-item" href="terms_conditions.html">Terms & Conditions</a></li>
-                <li><a class="dropdown-item" href="privacy.html">Privacy</a></li>
-                <li><a class="dropdown-item" href="terms%26conditions.html">Conditions</a></li>
-                <li><a class="dropdown-item" href="help_support.html">Help Support</a></li>
-                <li><a class="dropdown-item" href="help_ticket.html">Help Ticket</a></li>
-                <li><a class="dropdown-item" href="refund_payment.html">Refund Payment</a></li>
-                <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
-                <li><a class="dropdown-item" href="signin.html">Sign In</a></li>
-                <li><a class="dropdown-item" href="signup.html">Sign Up</a></li>
-                <li><a class="dropdown-item" href="search.html">Search</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#"><i class="icofont-link mr-2"></i> Navigation Link Example</a>
-            <ul>
-                <li>
-                    <a href="#">Link Example 1</a>
-                    <ul>
-                        <li>
-                            <a href="#">Link Example 1.1</a>
-                            <ul>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Link Example 1.2</a>
-                            <ul>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="#">Link Example 2</a></li>
-                <li><a href="#">Link Example 3</a></li>
-                <li><a href="#">Link Example 4</a></li>
-                <li data-nav-custom-content>
-                    <div class="custom-message">
-                        You can add any custom content to your navigation items. This text is just an example.
-                    </div>
-                </li>
-            </ul>
-        </li>
+        @if (session('user'))
+        <li><p>Hi {{session('user')->name}}</p></li>
+        @else
+        <li><p>Hi Guest</p></li>
+        @endif
+        <li><a href="/"><i class="icofont-smart-phone mr-2"></i> Home</a></li>
+        <li><a href="{{url('categories')}}"><i class="icofont-smart-phone mr-2"></i> Category</a></li>
+        <li><a href="#"><i class="icofont-smart-phone mr-2"></i> Trending Deals</a></li>
+        <li><a href="#"><i class="icofont-smart-phone mr-2"></i> Popular Deals</a></li>
+        <li><a href="#"><i class="icofont-smart-phone mr-2"></i> Help & Support</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.shinewell.rsuser"><i class="icofont-smart-phone mr-2"></i> Customer App</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.shinewell.rapidsevapartner.retrofit&pcampaignid=web_share"><i class="icofont-smart-phone mr-2"></i> Partner App</a></li>
+        @if (session('user'))
+        <li><a href="{{url('logout')}}"><i class="icofont-smart-phone mr-2"></i> Logout</a></li>
+        @else
+        <li><a href="{{url('login')}}"><i class="icofont-login mr-2"></i> Sign In</a></li>
+        <li><a href="{{url('signup')}}"><i class="icofont-login mr-2"></i> Register</a></li>
+        @endif
+        
+        
+        
+        
+       
+        
     </ul>
     <ul class="bottom-nav">
         <li class="email">
-            <a class="text-success" href="home.html">
+            <a class="text-success" href="/">
                 <p class="h5 m-0"><i class="icofont-home text-success"></i></p>
                 Home
             </a>
         </li>
         <li class="github">
-            <a href="cart.html">
+            <a href="/cart">
                 <p class="h5 m-0"><i class="icofont-cart"></i></p>
                 CART
             </a>
         </li>
         <li class="ko-fi">
-            <a href="help_ticket.html">
+            <a href="tel:+918092222323">
                 <p class="h5 m-0"><i class="icofont-headphone"></i></p>
                 Help
             </a>
@@ -131,11 +62,10 @@
                                 <button type="submit" class="btn btn-success"> Subscribe</button>
                             </span>
                         </div>
-
                     </form>
                 </div>
                 <div class="col-md-4 text-md-right">
-                    <a href="#" class="btn btn-icon btn-light"><i class="icofont-facebook"></i></a>
+                    <a href="https://www.facebook.com/rapidsevaa" class="btn btn-icon btn-light"><i class="icofont-facebook"></i></a>
                     <a href="#" class="btn btn-icon btn-light"><i class="icofont-twitter"></i></a>
                     <a href="#" class="btn btn-icon btn-light"><i class="icofont-instagram"></i></a>
                     <a href="#" class="btn btn-icon btn-light"><i class="icofont-youtube"></i></a>
@@ -150,27 +80,25 @@
         <div class="container">
             <div class="row">
                 <aside class="col-md">
-                    <h6 class="title">Products</h6>
+                    <h6 class="title">Services</h6>
                     <ul class="list-unstyled list-padding">
-                        <li> <a href="listing.html" class="text-dark">Listing</a></li>
-                        <li> <a href="product_details.html" class="text-dark">Detail</a></li>
-                        <li> <a href="picks_today.html" class="text-dark">Trending</a></li>
-                        <li> <a href="recommend.html" class="text-dark">Recommended</a></li>
-                        <li> <a href="fresh_vegan.html" class="text-dark">Most Popular</a></li>
+                        <li> <a href="{{url('categories')}}" class="text-dark">Category</a></li>
+                        <li> <a href="{{url('categories')}}" class="text-dark">Lists</a></li>
+                        <li> <a href="{{url('categories')}}" class="text-dark">Trending</a></li>
+                        <li> <a href="{{url('categories')}}" class="text-dark">Recommended</a></li>
+                        <li> <a href="{{url('categories')}}" class="text-dark">Most Popular</a></li>
                     </ul>
                 </aside>
                 <aside class="col-md">
-                    <h6 class="title">Checkout Process</h6>
+                    <h6 class="title">Contact Details</h6>
                     <ul class="list-unstyled list-padding">
-                        <li> <a href="cart.html" class="text-dark">Cart</a></li>
-                        <li> <a href="cart.html" class="text-dark">Order Address</a></li>
-                        <li> <a href="cart.html" class="text-dark">Delivery Time</a></li>
-                        <li> <a href="cart.html" class="text-dark">Order Payment</a></li>
-                        <li> <a href="checkout.html" class="text-dark">Checkout</a></li>
-                        <li> <a href="successful.html" class="text-dark">Successful</a></li>
+                        <li> <a href="tel:+918092222323" class="text-dark">Call :+91 809 222 2323</a></li>
+                        <li> <a href="tel:+918092222323" class="text-dark">WhatsApp :+91 809 222 2323</a></li>
+                        <li> <a href="mailto:rapidseva8@gmail.com" class="text-dark">Email : rapidseva8@gmail.com</a></li>
+                        <li> <a class="text-dark">Address : Patna, Bihar </a></li>
                     </ul>
                 </aside>
-                <aside class="col-md">
+                {{-- <aside class="col-md">
                     <h6 class="title">My Order</h6>
                     <ul class="list-unstyled list-padding">
                         <li> <a href="my_order.html" class="text-dark">My order</a></li>
@@ -179,8 +107,8 @@
                         <li> <a href="status_canceled.html" class="text-dark">Status Canceled</a></li>
                         <li> <a href="review.html" class="text-dark">Review</a></li>
                     </ul>
-                </aside>
-                <aside class="col-md">
+                </aside> --}}
+                {{-- <aside class="col-md">
                     <h6 class="title">My Account</h6>
                     <ul class="list-unstyled list-padding">
                         <li> <a class="text-dark" href="my_account.html"> My account</a></li>
@@ -191,16 +119,15 @@
                         <li> <a class="text-dark" href="help_ticket.html"> Help ticket</a></li>
                         <li> <a class="text-dark" href="signin.html"> Logout</a></li>
                     </ul>
-                </aside>
+                </aside> --}}
                 <aside class="col-md">
-                    <h6 class="title">Extra Pages</h6>
+                    <h6 class="title">Quick Links</h6>
                     <ul class="list-unstyled list-padding">
-                        <li><a href="promo_details.html" class="text-dark"> Promo Details </a></li>
-                        <li><a href="terms_conditions.html" class="text-dark"> Conditions </a></li>
-                        <li><a href="help_support.html" class="text-dark"> Help Support </a></li>
-                        <li><a href="refund_payment.html" class="text-dark"> Refund Payment </a></li>
-                        <li><a href="faq.html" class="text-dark"> FAQ </a></li>
-                        <li><a href="signin.html" class="text-dark"> Sign In </a></li>
+                        <li><a href="#" class="text-dark"> Privacy Policy </a></li>
+                        <li><a href="#" class="text-dark"> Terms & Conditions </a></li>
+                        <li><a href="#" class="text-dark"> Refund Policy </a></li>
+                        <li><a href="#" class="text-dark"> FAQ </a></li>
+                        <li><a href="{{url('login')}}" class="text-dark"> Sign In </a></li>
                     </ul>
                 </aside>
             </div>
@@ -214,13 +141,16 @@
             <div class="row">
                 <div class="col-md-6">
                     <span class="pr-2">© 2024 Rapid Seva</span>
-                    <span class="pr-2"><a href="privacy.html" class="text-dark">Privacy</a></span>
-                    <span class="pr-2"><a href="terms%26conditions.html" class="text-dark">Terms &
+                    <span class="pr-2"><a href="#" class="text-dark">Privacy</a></span>
+                    <span class="pr-2"><a href="#" class="text-dark">Terms &
                             Conditions</a></span>
                 </div>
-                <div class="col-md-6 text-md-right">
-                    <a href><img src="img/appstore.png" height="30"></a>
-                    <a href><img src="img/playmarket.png" height="30"></a>
+                <div class="col-md-3 text-md-right">
+                    <span class="pr-2"><a href="#" class="text-dark">Designed & Developed By : <a href="https://shinewell.in" target="_blank">Shine Well</a></span>
+                </div>
+                <div class="col-md-3 text-md-right">
+                    <a href="https://play.google.com/store/apps/details?id=com.shinewell.rsuser"><img src="{{url('img/playmarket.png')}}" height="30"></a>
+                    <a href="https://play.google.com/store/apps/details?id=com.shinewell.rapidsevapartner.retrofit&pcampaignid=web_share"><img src="{{url('img/playmarket.png')}}" height="30"></a>
                 </div>
             </div>
 
@@ -489,16 +419,16 @@
     </div>
 </div>
 
-<script src="vendor/jquery/jquery.min.js" type="ffb9166e87b0cbd838d29fa0-text/javascript"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js" type="ffb9166e87b0cbd838d29fa0-text/javascript"></script>
+<script src="{{url('vendor/jquery/jquery.min.js')}}" type="ffb9166e87b0cbd838d29fa0-text/javascript"></script>
+<script src="{{url('vendor/bootstrap/js/bootstrap.bundle.min.js')}}" type="ffb9166e87b0cbd838d29fa0-text/javascript"></script>
 
-<script type="ffb9166e87b0cbd838d29fa0-text/javascript" src="vendor/slick/slick.min.js"></script>
+<script type="ffb9166e87b0cbd838d29fa0-text/javascript" src="{{url('vendor/slick/slick.min.js')}}"></script>
 
-<script type="ffb9166e87b0cbd838d29fa0-text/javascript" src="vendor/sidebar/hc-offcanvas-nav.js"></script>
+<script type="ffb9166e87b0cbd838d29fa0-text/javascript" src="{{url('vendor/sidebar/hc-offcanvas-nav.js')}}"></script>
 
-<script src="js/osahan.js" type="ffb9166e87b0cbd838d29fa0-text/javascript"></script>
-<script src="js/rocket-loader.min.js" data-cf-settings="ffb9166e87b0cbd838d29fa0-|49" defer></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317"
+<script src="{{url('js/osahan.js')}}" type="ffb9166e87b0cbd838d29fa0-text/javascript"></script>
+<script src="{{url('js/rocket-loader.min.js')}}" data-cf-settings="ffb9166e87b0cbd838d29fa0-|49" defer></script>
+<script defer src="{{url('https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317')}}"
     integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA=="
     data-cf-beacon='{"rayId":"856059bb1d609a09","version":"2024.2.0","r":1,"token":"dd471ab1978346bbb991feaa79e6ce5c","b":1}'
     crossorigin="anonymous"></script>
