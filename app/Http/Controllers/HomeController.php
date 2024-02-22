@@ -154,6 +154,15 @@ class HomeController extends Controller
 
         return redirect()->route('login');
     }
+    public function termsandconditions(){
+        return view('termsandconditions');
+    }
+    public function privacypolicy(){
+        return view('privacypolicy');
+    }
+    public function refundpolicy(){
+        return view('refundpolicy');
+    }
 
    
 }

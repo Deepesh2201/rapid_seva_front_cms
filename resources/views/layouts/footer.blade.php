@@ -123,9 +123,9 @@
                 <aside class="col-md">
                     <h6 class="title">Quick Links</h6>
                     <ul class="list-unstyled list-padding">
-                        <li><a href="#" class="text-dark"> Privacy Policy </a></li>
-                        <li><a href="#" class="text-dark"> Terms & Conditions </a></li>
-                        <li><a href="#" class="text-dark"> Refund Policy </a></li>
+                        <li><a href="{{url('privacypolicy')}}" class="text-dark"> Privacy Policy </a></li>
+                        <li><a href="{{url('termsandconditions')}}" class="text-dark"> Terms & Conditions </a></li>
+                        <li><a href="{{url('refundpolicy')}}" class="text-dark"> Refund Policy </a></li>
                         <li><a href="#" class="text-dark"> FAQ </a></li>
                         <li><a href="{{url('login')}}" class="text-dark"> Sign In </a></li>
                     </ul>
@@ -141,8 +141,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <span class="pr-2">© 2024 Rapid Seva</span>
-                    <span class="pr-2"><a href="#" class="text-dark">Privacy</a></span>
-                    <span class="pr-2"><a href="#" class="text-dark">Terms &
+                    <span class="pr-2"><a href="{{url('privacypolicy')}}" class="text-dark">Privacy</a></span>
+                    <span class="pr-2"><a href="{{url('termsandconditions')}}" class="text-dark">Terms &
                             Conditions</a></span>
                 </div>
                 <div class="col-md-3 text-md-right">

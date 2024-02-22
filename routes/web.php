@@ -30,6 +30,8 @@ Route::get('categories', [HomeController::class, 'categories'])->name('categorie
 Route::get('subcategories/{id}', [HomeController::class, 'subcategories'])->name('subcategories');
 Route::get('services/{id}', [HomeController::class, 'services'])->name('services');
 Route::get('termsandconditions', [HomeController::class, 'termsandconditions'])->name('termsandconditions');
+Route::get('privacypolicy', [HomeController::class, 'privacypolicy'])->name('privacypolicy');
+Route::get('refundpolicy', [HomeController::class, 'refundpolicy'])->name('refundpolicy');
 
 /// Login Required
 Route::middleware('check.user')->group(function () {
